@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>NIGREDIA — Investment & Real Estate Advisory</title>
+<link rel="stylesheet" href="css/main.css"/>
+<style>
+/* ── HOME-SPECIFIC ───────────────────────────────────── */
+
+/* HERO */
+#hero {
+  height: 100vh; min-height: 620px;
+  background: var(--black);
+  display: flex; align-items: flex-end;
+  padding: 0 clamp(1.5rem,6vw,6rem) clamp(5rem,9vh,9rem);
+  position: relative; overflow: hidden;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 70% 40%, #171410 0%, #000 100%);
+}
+.hero-grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(245,241,232,.018) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(245,241,232,.018) 1px,transparent 1px);
+  background-size: 72px 72px;
+}
+.hero-ring {
+  position: absolute;
+  right: -8vw; top: 50%; transform: translateY(-50%);
+  width: 60vw; height: 60vw; max-width: 800px; max-height: 800px;
+  border: 1px solid rgba(245,241,232,.04);
+  border-radius: 50%;
+  animation: ringPulse 10s ease-in-out infinite;
+}
+.hero-ring::before {
+  content: ''; position: absolute; inset: 14%;
+  border: 1px solid rgba(245,241,232,.03); border-radius: 50%;
+}
+.hero-ring::after {
+  content: ''; position: absolute; inset: 30%;
+  border: 1px solid rgba(245,241,232,.025); border-radius: 50%;
+}
+@keyframes ringPulse {
+  0%,100% { transform: translateY(-50%) scale(1); }
+  50%      { transform: translateY(-50%) scale(1.03); }
+}
+.hero-content { position: relative; z-index: 1; max-width: 860px; }
+.hero-eyebrow {
+  font-size: .6rem; letter-spacing: .32em; text-transform: uppercase;
+  color: rgba(245,241,232,.38);
+  margin-bottom: 2.2rem;
+  display: flex; align-items: center; gap: 1rem;
+  opacity: 0; animation: fadeUp .8s 1s forwards;
+}
+.hero-eyebrow::before {
+  content: ''; display: block; width: 28px; height: 1px;
+  background: rgba(245,241,232,.3);
+}
+.hero-title {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: clamp(3rem, 7.5vw, 6.5rem);
+  line-height: 1.04;
+  color: var(--cream);
+  margin-bottom: 2rem;
+  opacity: 0; animation: fadeUp 1s 1.15s forwards;
+}
+.hero-title em { font-style: italic; color: rgba(245,241,232,.65); }
+.hero-subtitle {
+  font-size: clamp(.72rem,.9vw,.82rem);
+  font-weight: 300;
+  letter-spacing: .1em;
+  color: rgba(245,241,232,.4);
+  max-width: 500px;
+  line-height: 2;
+  margin-bottom: 3.5rem;
+  opacity: 0; animation: fadeUp .9s 1.35s forwards;
+}
+.hero-actions {
+  display: flex; gap: 1.5rem; flex-wrap: wrap;
+  opacity: 0; animation: fadeUp .9s 1.55s forwards;
+}
+.btn-primary {
+  display: inline-flex; align-items: center; gap: .9rem;
+  background: var(--cream); color: var(--black);
+  font-size: .62rem; letter-spacing: .2em; text-transform: uppercase;
+  font-weight: 500;
+  padding: 1.1rem 2.6rem;
+  transition: background .4s, color .4s;
+}
+.btn-primary:hover { background: var(--white); }
+.btn-primary svg { transition: transform .4s; }
+.btn-primary:hover svg { transform: translateX(5px); }
+.btn-secondary {
+  display: inline-flex; align-items: center; gap: .9rem;
+  border: 1px solid rgba(245,241,232,.2);
+  color: rgba(245,241,232,.7);
+  font-size: .62rem; letter-spacing: .2em; text-transform: uppercase;
+  padding: 1.1rem 2.6rem;
+  transition: border-color .4s, color .4s;
+}
+.btn-secondary:hover { border-color: rgba(245,241,232,.55); color: var(--cream); }
+.hero-scroll-ind {
+  position: absolute;
+  right: clamp(1.5rem,5vw,5rem);
+  bottom: clamp(3rem,6vh,6rem);
+  display: flex; flex-direction: column; align-items: center; gap: .8rem;
+  opacity: 0; animation: fadeUp 1s 2s forwards;
+}
+.hero-scroll-ind span {
+  font-size: .54rem; letter-spacing: .22em; text-transform: uppercase;
+  color: rgba(245,241,232,.25); writing-mode: vertical-rl;
+}
+.scroll-bar {
+  width: 1px; height: 58px;
+  background: linear-gradient(to bottom, rgba(245,241,232,.4), transparent);
+  animation: scrollAnim 2.5s 2.5s infinite;
+}
+@keyframes scrollAnim {
+  0%,100% { opacity: .3; transform: scaleY(1); transform-origin: top; }
+  50%      { opacity: .9; transform: scaleY(.5); }
+}
+@keyframes fadeUp {
+  to { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; transform: translateY(22px); }
+}
+
+/* INTRO STRIP */
+.intro-strip {
+  background: var(--black);
+  border-top: 1px solid rgba(255,255,255,.06);
+  padding: 4rem clamp(1.5rem,6vw,6rem);
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 2px;
+}
+.intro-stat {
+  padding: 2.5rem 2rem;
+  border-right: 1px solid rgba(255,255,255,.05);
+}
+.intro-stat:last-child { border-right: none; }
+.intro-num {
+  font-family: var(--serif); font-weight: 300;
+  font-size: clamp(2.2rem,3.5vw,3rem);
+  color: var(--cream); line-height: 1; margin-bottom: .6rem;
+}
+.intro-label {
+  font-size: .58rem; letter-spacing: .2em; text-transform: uppercase;
+  color: rgba(245,241,232,.35);
+}
+
+/* ABOUT PREVIEW */
+.home-about {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: clamp(3rem,6vw,8rem);
+  align-items: center;
+}
+.home-about-visual {
+  position: relative;
+  background: #0d0d0d;
+  overflow: hidden;
+}
+.home-about-visual .vis-inner {
+  aspect-ratio: 4/5;
+  background: linear-gradient(150deg,#111 0%,#1c1814 50%,#0d0d0d 100%);
+  display: flex; align-items: center; justify-content: center;
+}
+.home-about-visual .vis-inner svg { opacity: .08; }
+.home-about-visual::before {
+  content: ''; position: absolute;
+  top: -1px; left: -1px; right: -1px; bottom: -1px;
+  border: 1px solid rgba(245,241,232,.06);
+  pointer-events: none;
+}
+.home-about-text .section-label { color: rgba(0,0,0,.38); }
+.home-about-text .section-title { margin-bottom: 2rem; }
+.home-about-text p {
+  font-size: .82rem; line-height: 2; color: #555;
+  margin-bottom: 1.4rem;
+}
+.text-link {
+  display: inline-flex; align-items: center; gap: .7rem;
+  font-size: .62rem; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--black); border-bottom: 1px solid var(--black);
+  padding-bottom: .2rem;
+  transition: opacity .3s;
+  margin-top: .5rem;
+}
+.text-link:hover { opacity: .6; }
+.text-link svg { transition: transform .4s; }
+.text-link:hover svg { transform: translateX(5px); }
+
+/* SERVICES PREVIEW */
+.services-preview {
+  display: grid; grid-template-columns: repeat(3,1fr);
+  gap: 1px; margin-top: 4rem;
+  background: rgba(255,255,255,.06);
+}
+.svc-item {
+  background: var(--black);
+  padding: 3rem 2.5rem;
+  transition: background .4s;
+  position: relative;
+  overflow: hidden;
+}
+.svc-item::after {
+  content: ''; position: absolute;
+  bottom: 0; left: 0; right: 0; height: 2px;
+  background: var(--cream);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform .5s var(--ease);
+}
+.svc-item:hover { background: #0d0d0d; }
+.svc-item:hover::after { transform: scaleX(1); }
+.svc-num {
+  font-family: var(--serif); font-size: 3.5rem;
+  font-weight: 300; color: rgba(245,241,232,.05);
+  line-height: 1; margin-bottom: 2rem;
+}
+.svc-name {
+  font-family: var(--serif); font-weight: 300;
+  font-size: 1.3rem; color: var(--cream);
+  margin-bottom: .9rem;
+}
+.svc-item p {
+  font-size: .72rem; line-height: 1.85;
+  color: rgba(245,241,232,.4);
+}
+
+/* PROJECTS PREVIEW */
+.projects-preview-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 2px;
+  margin-top: 4rem;
+}
+.proj-prev {
+  background: #0d0d0d;
+  position: relative; overflow: hidden;
+  cursor: none;
+}
+.proj-prev:first-child { grid-row: span 2; }
+.proj-prev-inner {
+  aspect-ratio: 3/4;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 2rem;
+  transition: transform .8s var(--ease);
+  position: relative;
+}
+.proj-prev:first-child .proj-prev-inner { aspect-ratio: unset; height: 100%; }
+.proj-gradient {
+  position: absolute; inset: 0;
+  transition: opacity .5s;
+}
+.proj-gradient::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,.8) 0%, rgba(0,0,0,.1) 60%, transparent 100%);
+}
+.proj-prev:hover .proj-prev-inner { transform: scale(1.03); }
+.proj-meta { position: relative; z-index: 1; }
+.proj-status {
+  font-size: .54rem; letter-spacing: .22em; text-transform: uppercase;
+  color: rgba(245,241,232,.45); margin-bottom: .4rem;
+}
+.proj-status.active { color: rgba(200,180,120,.7); }
+.proj-title {
+  font-family: var(--serif); font-weight: 300;
+  font-size: clamp(.95rem,1.4vw,1.25rem);
+  color: var(--cream); line-height: 1.2;
+}
+.proj-type {
+  font-size: .6rem; letter-spacing: .12em;
+  color: rgba(245,241,232,.35);
+  margin-top: .4rem;
+}
+.view-all-wrap {
+  display: flex; justify-content: center; margin-top: 4rem;
+}
+
+/* CTA BAND */
+.cta-band {
+  background: var(--cream2);
+  padding: 7rem clamp(1.5rem,6vw,6rem);
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 3rem; flex-wrap: wrap;
+}
+.cta-band-text h2 {
+  font-family: var(--serif); font-weight: 300;
+  font-size: clamp(1.8rem,3.5vw,2.8rem);
+  line-height: 1.15; max-width: 500px;
+}
+.cta-band-text h2 em { font-style: italic; }
+.cta-band-text p {
+  font-size: .78rem; color: var(--mid);
+  margin-top: 1rem; line-height: 1.9;
+}
+
+/* RESPONSIVE */
+@media (max-width:900px) {
+  .home-about { grid-template-columns: 1fr; }
+  .home-about-visual { order: -1; }
+  .intro-strip { grid-template-columns: 1fr 1fr; }
+  .services-preview { grid-template-columns: 1fr; }
+  .projects-preview-grid { grid-template-columns: 1fr 1fr; }
+  .proj-prev:first-child { grid-row: span 1; }
+  .proj-prev:first-child .proj-prev-inner { height: auto; }
+}
+@media (max-width:600px) {
+  .intro-strip { grid-template-columns: 1fr 1fr; }
+  .projects-preview-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- Page Loader -->
+<div id="page-loader">
+  <img src="images/logo.png" alt="NIGREDIA" class="pl-logo"/>
+</div>
+
+<!-- Cursor -->
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <a href="index.html" class="nav-logo">
+    <img src="images/logo.png" alt="NIGREDIA"/>
+    <span class="nav-logo-text">Investment &amp; Real Estate<br>Advisory</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html"><span data-li="en">Home</span><span data-li="gr">Αρχική</span></a></li>
+    <li><a href="about.html"><span data-li="en">About</span><span data-li="gr">Σχετικά</span></a></li>
+    <li><a href="projects.html"><span data-li="en">Projects</span><span data-li="gr">Έργα</span></a></li>
+    <li><a href="investments.html"><span data-li="en">Investments</span><span data-li="gr">Επενδύσεις</span></a></li>
+    <li><a href="advisory.html"><span data-li="en">Advisory</span><span data-li="gr">Συμβουλευτική</span></a></li>
+    <li><a href="contact.html"><span data-li="en">Contact</span><span data-li="gr">Επικοινωνία</span></a></li>
+  </ul>
+  <div class="lang-switcher">
+    <button class="lang-btn active" data-lang="en" onclick="setLang('en')">EN</button>
+    <span class="lang-sep">|</span>
+    <button class="lang-btn" data-lang="gr" onclick="setLang('gr')">GR</button>
+  </div>
+  <button class="ham" id="ham" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobile-menu">
+  <a href="index.html" onclick="closeMenu()"><span data-li="en">Home</span><span data-li="gr">Αρχική</span></a>
+  <a href="about.html" onclick="closeMenu()"><span data-li="en">About</span><span data-li="gr">Σχετικά</span></a>
+  <a href="projects.html" onclick="closeMenu()"><span data-li="en">Projects</span><span data-li="gr">Έργα</span></a>
+  <a href="investments.html" onclick="closeMenu()"><span data-li="en">Investments</span><span data-li="gr">Επενδύσεις</span></a>
+  <a href="advisory.html" onclick="closeMenu()"><span data-li="en">Advisory</span><span data-li="gr">Συμβουλευτική</span></a>
+  <a href="contact.html" onclick="closeMenu()"><span data-li="en">Contact</span><span data-li="gr">Επικοινωνία</span></a>
+  <div class="mob-lang">
+    <button class="lang-btn" data-lang="en" onclick="setLang('en');closeMenu()">EN</button>
+    <span class="lang-sep">|</span>
+    <button class="lang-btn" data-lang="gr" onclick="setLang('gr');closeMenu()">GR</button>
+  </div>
+</div>
+
+<!-- ═══ HERO ═══════════════════════════════════════════ -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-ring"></div>
+
+  <div class="hero-content">
+    <p class="hero-eyebrow">
+      <span data-li="en">Athens · London · Geneva · Montreal</span>
+      <span data-li="gr">Αθήνα · Λονδίνο · Γενεύη · Μόντρεαλ</span>
+    </p>
+
+    <h1 class="hero-title" data-lang="en">
+      Strategic<br>Investments.<br><em>Timeless Value.</em>
+    </h1>
+    <h1 class="hero-title" data-lang="gr">
+      Στρατηγικές<br>Επενδύσεις.<br><em>Διαχρονική Αξία.</em>
+    </h1>
+
+    <p class="hero-subtitle" data-lang="en">
+      NIGREDIA is an independent investment and real estate advisory firm.<br>
+      We identify, structure and manage high-value assets that endure beyond market cycles.
+    </p>
+    <p class="hero-subtitle" data-lang="gr">
+      Η NIGREDIA είναι ανεξάρτητη εταιρεία επενδύσεων και συμβουλευτικής ακινήτων.<br>
+      Εντοπίζουμε, δομούμε και διαχειριζόμαστε αξιόλογα περιουσιακά στοιχεία που υπερβαίνουν τους κύκλους της αγοράς.
+    </p>
+
+    <div class="hero-actions">
+      <a href="projects.html" class="btn-primary">
+        <span data-li="en">Explore Projects</span>
+        <span data-li="gr">Δείτε τα Έργα</span>
+        <svg width="16" height="9" viewBox="0 0 16 9" fill="none"><path d="M1 4.5h14M10 1l5 3.5-5 3.5" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/></svg>
+      </a>
+      <a href="about.html" class="btn-secondary">
+        <span data-li="en">About Us</span>
+        <span data-li="gr">Σχετικά</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="hero-scroll-ind">
+    <span data-li="en">Scroll</span>
+    <span data-li="gr">Κύλιση</span>
+    <div class="scroll-bar"></div>
+  </div>
+</section>
+
+<!-- ═══ STATS STRIP ═════════════════════════════════════ -->
+<div class="intro-strip">
+  <div class="intro-stat reveal">
+    <div class="intro-num">37+</div>
+    <div class="intro-label"><span data-li="en">Years of Experience</span><span data-li="gr">Χρόνια Εμπειρίας</span></div>
+  </div>
+  <div class="intro-stat reveal reveal-d1">
+    <div class="intro-num">47</div>
+    <div class="intro-label"><span data-li="en">Projects Completed</span><span data-li="gr">Ολοκληρωμένα Έργα</span></div>
+  </div>
+  <div class="intro-stat reveal reveal-d2">
+    <div class="intro-num">16</div>
+    <div class="intro-label"><span data-li="en">Active Developments</span><span data-li="gr">Ενεργά Έργα</span></div>
+  </div>
+  <div class="intro-stat reveal reveal-d3">
+    <div class="intro-num">4</div>
+    <div class="intro-label"><span data-li="en">Countries</span><span data-li="gr">Χώρες</span></div>
+  </div>
+</div>
+
+<!-- ═══ ABOUT PREVIEW ═══════════════════════════════════ -->
+<section class="section section-cream">
+  <div class="home-about">
+    <div class="home-about-visual reveal">
+      <div class="vis-inner">
+        <svg width="120" height="120" viewBox="0 0 120 120" fill="none">
+          <rect x="15" y="60" width="25" height="45" stroke="#F5F1E8" stroke-width="1.2"/>
+          <rect x="47" y="38" width="25" height="67" stroke="#F5F1E8" stroke-width="1.2"/>
+          <rect x="79" y="15" width="25" height="90" stroke="#F5F1E8" stroke-width="1.2"/>
+          <line x1="8" y1="105" x2="112" y2="105" stroke="#F5F1E8" stroke-width="1.2"/>
+        </svg>
+      </div>
+    </div>
+    <div class="home-about-text">
+      <div class="section-label dark reveal">
+        <span data-li="en">About Nigredia</span>
+        <span data-li="gr">Σχετικά με τη Nigredia</span>
+      </div>
+      <h2 class="section-title section-title on-cream reveal reveal-d1" data-lang="en">
+        Where precision meets<br><em>long-term vision.</em>
+      </h2>
+      <h2 class="section-title on-cream reveal reveal-d1" data-lang="gr">
+        Όπου η ακρίβεια συναντά<br><em>τη μακροπρόθεσμη στρατηγική.</em>
+      </h2>
+      <p class="reveal reveal-d2" data-lang="en">
+        NIGREDIA is an independent investment and real estate advisory firm, founded on the principle that exceptional assets require exceptional stewardship. With deep roots in the Greek market and an international outlook, we identify and manage opportunities that endure.
+      </p>
+      <p class="reveal reveal-d2" data-lang="gr">
+        Η NIGREDIA είναι ανεξάρτητη εταιρεία επενδύσεων και συμβουλευτικής ακινήτων, θεμελιωμένη στην αρχή ότι τα εξαιρετικά περιουσιακά στοιχεία απαιτούν εξαιρετική διαχείριση. Με βαθιές ρίζες στην ελληνική αγορά και διεθνή οπτική, εντοπίζουμε ευκαιρίες που διαρκούν.
+      </p>
+      <a href="about.html" class="text-link reveal reveal-d3">
+        <span data-li="en">Discover our story</span>
+        <span data-li="gr">Η ιστορία μας</span>
+        <svg width="16" height="9" viewBox="0 0 16 9" fill="none"><path d="M1 4.5h14M10 1l5 3.5-5 3.5" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SERVICES PREVIEW ═════════════════════════════════ -->
+<section class="section section-black">
+  <div class="section-label reveal">
+    <span data-li="en">Our Expertise</span>
+    <span data-li="gr">Η Εξειδίκευσή μας</span>
+  </div>
+  <h2 class="section-title on-black reveal reveal-d1" data-lang="en">Expert guidance<br><em>at every stage.</em></h2>
+  <h2 class="section-title on-black reveal reveal-d1" data-lang="gr">Εξειδικευμένη καθοδήγηση<br><em>σε κάθε στάδιο.</em></h2>
+
+  <div class="services-preview">
+    <div class="svc-item reveal reveal-d1">
+      <div class="svc-num">01</div>
+      <div class="svc-name" data-lang="en">Acquisition Advisory</div>
+      <div class="svc-name" data-lang="gr">Συμβουλευτική Απόκτησης</div>
+      <p data-lang="en">End-to-end guidance from market analysis and due diligence through to negotiation and closing.</p>
+      <p data-lang="gr">Ολοκληρωμένη καθοδήγηση από την ανάλυση αγοράς και τη δέουσα επιμέλεια έως τη διαπραγμάτευση και ολοκλήρωση.</p>
+    </div>
+    <div class="svc-item reveal reveal-d2">
+      <div class="svc-num">02</div>
+      <div class="svc-name" data-lang="en">Portfolio Strategy</div>
+      <div class="svc-name" data-lang="gr">Στρατηγική Χαρτοφυλακίου</div>
+      <p data-lang="en">Forward-looking portfolio design — aligning your real estate assets with long-term objectives.</p>
+      <p data-lang="gr">Σχεδιασμός χαρτοφυλακίου με προοπτική — ευθυγράμμιση των ακινήτων σας με μακροπρόθεσμους στόχους.</p>
+    </div>
+    <div class="svc-item reveal reveal-d3">
+      <div class="svc-num">03</div>
+      <div class="svc-name" data-lang="en">Development Management</div>
+      <div class="svc-name" data-lang="gr">Διαχείριση Ανάπτυξης</div>
+      <p data-lang="en">Full lifecycle oversight ensuring quality, cost discipline, and delivery excellence on every project.</p>
+      <p data-lang="gr">Πλήρης επίβλεψη κύκλου ζωής που εξασφαλίζει ποιότητα, πειθαρχία κόστους και αριστεία παράδοσης.</p>
+    </div>
+  </div>
+
+  <div class="view-all-wrap reveal">
+    <a href="advisory.html" class="btn-secondary">
+      <span data-li="en">All Advisory Services</span>
+      <span data-li="gr">Όλες οι Υπηρεσίες</span>
+      <svg width="16" height="9" viewBox="0 0 16 9" fill="none"><path d="M1 4.5h14M10 1l5 3.5-5 3.5" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- ═══ PROJECTS PREVIEW ═════════════════════════════════ -->
+<section class="section section-cream2">
+  <div class="section-label dark reveal">
+    <span data-li="en">Selected Projects</span>
+    <span data-li="gr">Επιλεγμένα Έργα</span>
+  </div>
+  <h2 class="section-title on-cream reveal reveal-d1" data-lang="en">
+    Real estate that<br><em>defines its context.</em>
+  </h2>
+  <h2 class="section-title on-cream reveal reveal-d1" data-lang="gr">
+    Ακίνητα που<br><em>ορίζουν το περιβάλλον τους.</em>
+  </h2>
+
+  <div class="projects-preview-grid">
+    <div class="proj-prev reveal">
+      <div class="proj-prev-inner">
+        <div class="proj-gradient" style="background:linear-gradient(145deg,#1a1a2a,#0d0d18);"></div>
+        <div class="proj-meta">
+          <div class="proj-status active"><span data-li="en">In Progress</span><span data-li="gr">Σε Εξέλιξη</span></div>
+          <div class="proj-title" data-lang="en">Leoforos Syggrou 180<br>Kallithea</div>
+          <div class="proj-title" data-lang="gr">Λεωφ. Α. Συγγρού 180<br>Καλλιθέα</div>
+          <div class="proj-type"><span data-li="en">Office & Residential</span><span data-li="gr">Γραφεία & Κατοικίες</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="proj-prev reveal reveal-d1">
+      <div class="proj-prev-inner">
+        <div class="proj-gradient" style="background:linear-gradient(145deg,#1a1410,#0d0906);"></div>
+        <div class="proj-meta">
+          <div class="proj-status active"><span data-li="en">In Progress</span><span data-li="gr">Σε Εξέλιξη</span></div>
+          <div class="proj-title" data-lang="en">Sarri 30<br>Athens Centre</div>
+          <div class="proj-title" data-lang="gr">Σαρρή 30<br>Κέντρο Αθήνας</div>
+          <div class="proj-type"><span data-li="en">Hotel</span><span data-li="gr">Ξενοδοχείο</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="proj-prev reveal reveal-d2">
+      <div class="proj-prev-inner">
+        <div class="proj-gradient" style="background:linear-gradient(145deg,#101a14,#080e0a);"></div>
+        <div class="proj-meta">
+          <div class="proj-status"><span data-li="en">Completed</span><span data-li="gr">Ολοκληρωμένο</span></div>
+          <div class="proj-title" data-lang="en">Formianos 155<br>Kaisariani</div>
+          <div class="proj-title" data-lang="gr">Φορμίωνος 155<br>Καισαριανή</div>
+          <div class="proj-type"><span data-li="en">Residential</span><span data-li="gr">Κατοικία</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="proj-prev reveal reveal-d1">
+      <div class="proj-prev-inner">
+        <div class="proj-gradient" style="background:linear-gradient(145deg,#1a1018,#0d0810);"></div>
+        <div class="proj-meta">
+          <div class="proj-status"><span data-li="en">Completed</span><span data-li="gr">Ολοκληρωμένο</span></div>
+          <div class="proj-title" data-lang="en">Brown Hotel<br>Omonia</div>
+          <div class="proj-title" data-lang="gr">Brown Hotel<br>Ομόνοια</div>
+          <div class="proj-type"><span data-li="en">Hotel</span><span data-li="gr">Ξενοδοχείο</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="proj-prev reveal reveal-d2">
+      <div class="proj-prev-inner">
+        <div class="proj-gradient" style="background:linear-gradient(145deg,#18140a,#100c04);"></div>
+        <div class="proj-meta">
+          <div class="proj-status active"><span data-li="en">In Progress</span><span data-li="gr">Σε Εξέλιξη</span></div>
+          <div class="proj-title" data-lang="en">Villa Korfos<br>Mykonos</div>
+          <div class="proj-title" data-lang="gr">Βίλα Κόρφος<br>Μύκονος</div>
+          <div class="proj-type"><span data-li="en">Villa</span><span data-li="gr">Βίλα</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="view-all-wrap reveal">
+    <a href="projects.html" class="btn-primary" style="background:var(--black);color:var(--cream);">
+      <span data-li="en">View All 16 Projects</span>
+      <span data-li="gr">Όλα τα 16 Έργα</span>
+      <svg width="16" height="9" viewBox="0 0 16 9" fill="none"><path d="M1 4.5h14M10 1l5 3.5-5 3.5" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- ═══ CTA BAND ═════════════════════════════════════════ -->
+<div class="cta-band">
+  <div class="cta-band-text reveal">
+    <h2 data-lang="en">Begin a conversation<br><em>with our team.</em></h2>
+    <h2 data-lang="gr">Ξεκινήστε μια συνομιλία<br><em>με την ομάδα μας.</em></h2>
+    <p data-lang="en">We work with a select number of private clients, family offices and institutional partners.</p>
+    <p data-lang="gr">Συνεργαζόμαστε με επιλεγμένο αριθμό ιδιωτών πελατών, family offices και θεσμικών εταίρων.</p>
+  </div>
+  <a href="contact.html" class="btn-primary reveal reveal-d2" style="background:var(--black);color:var(--cream);">
+    <span data-li="en">Contact Us</span>
+    <span data-li="gr">Επικοινωνία</span>
+    <svg width="16" height="9" viewBox="0 0 16 9" fill="none"><path d="M1 4.5h14M10 1l5 3.5-5 3.5" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/></svg>
+  </a>
+</div>
+
+<!-- ═══ FOOTER ════════════════════════════════════════════ -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-logo-wrap">
+      <img src="images/logo.png" alt="NIGREDIA"/>
+      <p class="footer-tagline" data-lang="en">Investment &amp; Real Estate Advisory</p>
+      <p class="footer-tagline" data-lang="gr">Επενδύσεις &amp; Συμβουλευτική Ακινήτων</p>
+      <p style="font-size:.68rem;color:rgba(245,241,232,.3);line-height:1.8;margin-top:.8rem;">
+        Agias Varvaras 45<br>Dafni 17235<br>
+        Greece
+      </p>
+      <p style="font-size:.68rem;color:rgba(245,241,232,.3);margin-top:.4rem;">info@nigredia.com</p>
+    </div>
+    <div class="footer-col">
+      <h4 data-lang="en">Navigation</h4>
+      <h4 data-lang="gr">Πλοήγηση</h4>
+      <a href="index.html"><span data-li="en">Home</span><span data-li="gr">Αρχική</span></a>
+      <a href="about.html"><span data-li="en">About</span><span data-li="gr">Σχετικά</span></a>
+      <a href="projects.html"><span data-li="en">Projects</span><span data-li="gr">Έργα</span></a>
+      <a href="investments.html"><span data-li="en">Investments</span><span data-li="gr">Επενδύσεις</span></a>
+      <a href="advisory.html"><span data-li="en">Advisory</span><span data-li="gr">Συμβουλευτική</span></a>
+      <a href="contact.html"><span data-li="en">Contact</span><span data-li="gr">Επικοινωνία</span></a>
+    </div>
+    <div class="footer-col">
+      <h4 data-lang="en">Services</h4>
+      <h4 data-lang="gr">Υπηρεσίες</h4>
+      <a href="advisory.html"><span data-li="en">Acquisition Advisory</span><span data-li="gr">Συμβουλευτική Απόκτησης</span></a>
+      <a href="advisory.html"><span data-li="en">Portfolio Strategy</span><span data-li="gr">Στρατηγική Χαρτοφυλακίου</span></a>
+      <a href="advisory.html"><span data-li="en">Development Management</span><span data-li="gr">Διαχείριση Ανάπτυξης</span></a>
+      <a href="advisory.html"><span data-li="en">Golden Visa</span><span data-li="gr">Golden Visa</span></a>
+      <a href="investments.html"><span data-li="en">Investment Strategy</span><span data-li="gr">Επενδυτική Στρατηγική</span></a>
+    </div>
+    <div class="footer-col">
+      <h4 data-lang="en">Presence</h4>
+      <h4 data-lang="gr">Παρουσία</h4>
+      <p>Athens<br>London<br>Geneva<br>Montreal</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2024 NIGREDIA. <span data-li="en">All rights reserved.</span><span data-li="gr">Με επιφύλαξη παντός δικαιώματος.</span></p>
+    <p class="footer-copy">info@nigredia.com</p>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

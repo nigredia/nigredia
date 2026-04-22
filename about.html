@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>About — NIGREDIA</title>
+<link rel="stylesheet" href="css/main.css"/>
+<style>
+.page-hero {
+  height: 52vh; min-height: 420px;
+  background: var(--black);
+  display: flex; align-items: flex-end;
+  padding: 0 clamp(1.5rem,6vw,6rem) 5rem;
+  position: relative; overflow: hidden;
+  margin-top: var(--nav-h);
+}
+.page-hero-grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(245,241,232,.015) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(245,241,232,.015) 1px,transparent 1px);
+  background-size: 60px 60px;
+}
+.page-hero-content { position: relative; z-index: 1; }
+.page-hero-label {
+  font-size: .58rem; letter-spacing: .3em; text-transform: uppercase;
+  color: rgba(245,241,232,.32); margin-bottom: 1.4rem;
+  display: flex; align-items: center; gap: .8rem;
+}
+.page-hero-label::before { content:''; width:26px;height:1px;background:rgba(245,241,232,.3); }
+.page-hero h1 {
+  font-family: var(--serif); font-weight: 300;
+  font-size: clamp(2.5rem,6vw,5rem);
+  color: var(--cream); line-height: 1.06;
+}
+.page-hero h1 em { font-style: italic; color: rgba(245,241,232,.55); }
+
+/* ABOUT MISSION */
+.mission-block {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: clamp(3rem,7vw,9rem);
+  align-items: start;
+}
+.mission-block .big-quote {
+  font-family: var(--serif); font-weight: 300;
+  font-size: clamp(1.5rem,2.8vw,2.2rem);
+  line-height: 1.5;
+  color: var(--black);
+  border-left: 2px solid var(--black);
+  padding-left: 2rem;
+}
+.mission-block .big-quote em { font-style: italic; }
+.mission-text p {
+  font-size: .82rem; line-height: 2.05;
+  color: #555; margin-bottom: 1.4rem;
+}
+
+/* VALUES */
+.values-grid {
+  display: grid; grid-template-columns: repeat(3,1fr);
+  gap: 1px; background: rgba(0,0,0,.08);
+  margin-top: 4rem;
+}
+.value-item {
+  background: var(--cream);
+  padding: 3.5rem 2.5rem;
+  transition: background .4s;
+}
+.value-item:hover { background: var(--cream2); }
+.value-icon {
+  width: 42px; height: 42px;
+  border: 1px solid rgba(0,0,0,.15);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 1.8rem;
+  transition: border-color .4s;
+}
+.value-item:hover .value-icon { border-color: var(--black); }
+.value-title {
+  font-family: var(--serif); font-size: 1.3rem;
+  font-weight: 400; margin-bottom: .9rem;
+}
+.value-item p { font-size: .74rem; line-height: 1.9; color: #666; }
+
+/* TEAM */
+.team-intro {
+  max-width: 620px; margin-bottom: 4rem;
+}
+.team-intro p { font-size: .85rem; line-height: 2; color: #555; }
+.team-grid {
+  display: grid; grid-template-columns: repeat(3,1fr); gap: 2rem;
+}
+.team-card { }
+.team-photo {
+  aspect-ratio: 3/4;
+  background: linear-gradient(150deg,#e8e3d8,#d8d0c0);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 1.4rem; overflow: hidden;
+}
+.team-photo svg { opacity: .12; }
+.team-name {
+  font-family: var(--serif); font-size: 1.25rem;
+  font-weight: 400; margin-bottom: .3rem;
+}
+.team-role {
+  font-size: .6rem; letter-spacing: .18em; text-transform: uppercase;
+  color: var(--mid);
+}
+
+/* TIMELINE */
+.timeline { margin-top: 4rem; }
+.tl-item {
+  display: grid; grid-template-columns: 100px 1fr;
+  gap: 3rem; padding-bottom: 3.5rem;
+  border-bottom: 1px solid rgba(255,255,255,.06);
+  margin-bottom: 3.5rem;
+}
+.tl-item:last-child { border-bottom: none; margin-bottom: 0; }
+.tl-year {
+  font-family: var(--serif); font-size: 2rem;
+  font-weight: 300; color: rgba(245,241,232,.4);
+  padding-top: .2rem;
+}
+.tl-content h3 {
+  font-family: var(--serif); font-weight: 300;
+  font-size: 1.25rem; color: var(--cream);
+  margin-bottom: .6rem;
+}
+.tl-content p { font-size: .75rem; line-height: 1.9; color: rgba(245,241,232,.45); }
+
+/* RESPONSIVE */
+@media (max-width:900px) {
+  .mission-block { grid-template-columns: 1fr; }
+  .values-grid { grid-template-columns: 1fr; }
+  .team-grid { grid-template-columns: 1fr 1fr; }
+  .tl-item { grid-template-columns: 70px 1fr; gap: 1.5rem; }
+}
+@media (max-width:600px) {
+  .team-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div id="page-loader"><img src="images/logo.png" alt="NIGREDIA" class="pl-logo"/></div>
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+
+<nav id="navbar">
+  <a href="index.html" class="nav-logo">
+    <img src="images/logo.png" alt="NIGREDIA"/>
+    <span class="nav-logo-text">Investment &amp; Real Estate<br>Advisory</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html"><span data-li="en">Home</span><span data-li="gr">Αρχική</span></a></li>
+    <li><a href="about.html"><span data-li="en">About</span><span data-li="gr">Σχετικά</span></a></li>
+    <li><a href="projects.html"><span data-li="en">Projects</span><span data-li="gr">Έργα</span></a></li>
+    <li><a href="investments.html"><span data-li="en">Investments</span><span data-li="gr">Επενδύσεις</span></a></li>
+    <li><a href="advisory.html"><span data-li="en">Advisory</span><span data-li="gr">Συμβουλευτική</span></a></li>
+    <li><a href="contact.html"><span data-li="en">Contact</span><span data-li="gr">Επικοινωνία</span></a></li>
+  </ul>
+  <div class="lang-switcher">
+    <button class="lang-btn active" data-lang="en" onclick="setLang('en')">EN</button>
+    <span class="lang-sep">|</span>
+    <button class="lang-btn" data-lang="gr" onclick="setLang('gr')">GR</button>
+  </div>
+  <button class="ham" id="ham" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="index.html" onclick="closeMenu()"><span data-li="en">Home</span><span data-li="gr">Αρχική</span></a>
+  <a href="about.html" onclick="closeMenu()"><span data-li="en">About</span><span data-li="gr">Σχετικά</span></a>
+  <a href="projects.html" onclick="closeMenu()"><span data-li="en">Projects</span><span data-li="gr">Έργα</span></a>
+  <a href="investments.html" onclick="closeMenu()"><span data-li="en">Investments</span><span data-li="gr">Επενδύσεις</span></a>
+  <a href="advisory.html" onclick="closeMenu()"><span data-li="en">Advisory</span><span data-li="gr">Συμβουλευτική</span></a>
+  <a href="contact.html" onclick="closeMenu()"><span data-li="en">Contact</span><span data-li="gr">Επικοινωνία</span></a>
+  <div class="mob-lang">
+    <button class="lang-btn" data-lang="en" onclick="setLang('en');closeMenu()">EN</button>
+    <span class="lang-sep">|</span>
+    <button class="lang-btn" data-lang="gr" onclick="setLang('gr');closeMenu()">GR</button>
+  </div>
+</div>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-grid"></div>
+  <div class="page-hero-content">
+    <div class="page-hero-label"><span data-li="en">About Nigredia</span><span data-li="gr">Σχετικά</span></div>
+    <h1 data-lang="en">Built on trust.<br><em>Driven by vision.</em></h1>
+    <h1 data-lang="gr">Χτισμένη στην εμπιστοσύνη.<br><em>Οδηγούμενη από όραμα.</em></h1>
+  </div>
+</div>
+
+<!-- MISSION -->
+<section class="section section-cream">
+  <div class="mission-block">
+    <div class="reveal">
+      <blockquote class="big-quote" data-lang="en">
+        "We do not pursue volume.<br><em>We pursue quality — in every asset, every relationship, every decision."</em>
+      </blockquote>
+      <blockquote class="big-quote" data-lang="gr">
+        "Δεν επιδιώκουμε τον όγκο.<br><em>Επιδιώκουμε ποιότητα — σε κάθε ακίνητο, σε κάθε σχέση, σε κάθε απόφαση."</em>
+      </blockquote>
+    </div>
+    <div class="mission-text reveal reveal-d2">
+      <p data-lang="en">
+        NIGREDIA was established on the conviction that the most enduring wealth is created through disciplined, patient, and highly selective investment — not through volume or short-term opportunism. Over 37 years of activity in real estate and capital markets, we have cultivated a culture of precision that runs through every layer of our organisation.
+      </p>
+      <p data-lang="gr">
+        Η NIGREDIA ιδρύθηκε με την πεποίθηση ότι ο πιο διαρκής πλούτος δημιουργείται μέσα από πειθαρχημένη, υπομονετική και εξαιρετικά επιλεκτική επένδυση — όχι μέσα από τον όγκο ή τον βραχυπρόθεσμο οπορτουνισμό. Σε 37 χρόνια δραστηριότητας, έχουμε καλλιεργήσει μια κουλτούρα ακρίβειας που διατρέχει κάθε επίπεδο της οργάνωσής μας.
+      </p>
+      <p data-lang="en">
+        We partner with private clients, family offices and institutional investors who share our values: rigor, confidentiality, and a long-term horizon. Our geographic presence in Athens, London, Geneva and Montreal allows us to serve international mandates with both local insight and global perspective.
+      </p>
+      <p data-lang="gr">
+        Συνεργαζόμαστε με ιδιώτες πελάτες, family offices και θεσμικούς επενδυτές που μοιράζονται τις αξίες μας: αυστηρότητα, εμπιστευτικότητα και μακροπρόθεσμο ορίζοντα. Η παρουσία μας στην Αθήνα, το Λονδίνο, τη Γενεύη και το Μόντρεαλ μας επιτρέπει να εξυπηρετούμε διεθνείς εντολές.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- VALUES -->
+<section class="section section-cream2">
+  <div class="section-label dark reveal">
+    <span data-li="en">Our Values</span>
+    <span data-li="gr">Οι Αξίες μας</span>
+  </div>
+  <h2 class="section-title on-cream reveal reveal-d1" data-lang="en">The principles that<br><em>guide every decision.</em></h2>
+  <h2 class="section-title on-cream reveal reveal-d1" data-lang="gr">Οι αρχές που<br><em>καθοδηγούν κάθε απόφαση.</em></h2>
+
+  <div class="values-grid">
+    <div class="value-item reveal reveal-d1">
+      <div class="value-icon">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1v14M1 8h14" stroke="currentColor" stroke-width="1.2"/></svg>
+      </div>
+      <div class="value-title" data-lang="en">Integrity</div>
+      <div class="value-title" data-lang="gr">Ακεραιότητα</div>
+      <p data-lang="en">We operate with complete transparency and unwavering ethical standards. Every commitment we make is honoured, every piece of advice given with full impartiality.</p>
+      <p data-lang="gr">Λειτουργούμε με πλήρη διαφάνεια και σταθερά ηθικά πρότυπα. Κάθε δέσμευσή μας τηρείται, κάθε συμβουλή παρέχεται με πλήρη αμεροληψία.</p>
+    </div>
+    <div class="value-item reveal reveal-d2">
+      <div class="value-icon">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.2"/><path d="M8 5v4l2.5 2.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+      </div>
+      <div class="value-title" data-lang="en">Long-term Thinking</div>
+      <div class="value-title" data-lang="gr">Μακροπρόθεσμη Σκέψη</div>
+      <p data-lang="en">Our investment horizon extends beyond cycles and short-term market movements. We build portfolios and relationships designed to compound value over decades, not quarters.</p>
+      <p data-lang="gr">Ο επενδυτικός μας ορίζοντας εκτείνεται πέρα από κύκλους και βραχυπρόθεσμες κινήσεις της αγοράς. Δημιουργούμε χαρτοφυλάκια και σχέσεις σχεδιασμένες να αυξάνουν αξία για δεκαετίες.</p>
+    </div>
+    <div class="value-item reveal reveal-d3">
+      <div class="value-icon">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 14L8 2l6 12H2z" stroke="currentColor" stroke-width="1.2"/></svg>
+      </div>
+      <div class="value-title" data-lang="en">Selective Excellence</div>
+      <div class="value-title" data-lang="gr">Επιλεκτική Αριστεία</div>
+      <p data-lang="en">We deliberately limit the scope of our activity to ensure every client and every project receives our full attention. Quality over quantity defines every mandate we accept.</p>
+      <p data-lang="gr">Περιορίζουμε σκόπιμα το εύρος της δραστηριότητάς μας για να διασφαλίσουμε ότι κάθε πελάτης και κάθε έργο λαμβάνει την πλήρη προσοχή μας.</p>
+    </div>
+    <div class="value-item reveal reveal-d1">
+      <div class="value-icon">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="2" width="12" height="12" stroke="currentColor" stroke-width="1.2"/><path d="M2 8h12M8 2v12" stroke="currentColor" stroke-width="1.2"/></svg>
+      </div>
+      <div class="value-title" data-lang="en">Discretion</div>
+      <div class="value-title" data-lang="gr">Διακριτικότητα</div>
+      <p data-lang="en">Our clients' affairs are handled with the strictest confidence. We understand that for many of our partners, privacy is not merely preferred — it is essential.</p>
+      <p data-lang="gr">Οι υποθέσεις των πελατών μας χειρίζονται με αυστηρή εμπιστευτικότητα. Κατανοούμε ότι για πολλούς από τους συνεργάτες μας, η ιδιωτικότητα δεν είναι απλώς προτιμητέα — είναι απαραίτητη.</p>
+    </div>
+    <div class="value-item reveal reveal-d2">
+      <div class="value-icon">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M1 12l5-5 3 3 3-4 3 5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="value-title" data-lang="en">Rigorous Analysis</div>
+      <div class="value-title" data-lang="gr">Αυστηρή Ανάλυση</div>
+      <p data-lang="en">Every investment decision is grounded in deep research, independent due diligence, and stress-tested underwriting models that identify both opportunity and risk with precision.</p>
+      <p data-lang="gr">Κάθε επενδυτική απόφαση βασίζεται σε βαθιά έρευνα, ανεξάρτητη δέουσα επιμέλεια και μοντέλα εγγραφής που εντοπίζουν ευκαιρίες και κινδύνους με ακρίβεια.</p>
+    </div>
+    <div class="value-item reveal reveal-d3">
+      <div class="value-icon">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="5" cy="5" r="3" stroke="currentColor" stroke-width="1.2"/><circle cx="11" cy="11" r="3" stroke="currentColor" stroke-width="1.2"/><path d="M8 8l-3-3M8 8l3 3" stroke="currentColor" stroke-width="1.2"/></svg>
+      </div>
+      <div class="value-title" data-lang="en">Partnership</div>
+      <div class="value-title" data-lang="gr">Εταιρική Σχέση</div>
+      <p data-lang="en">We see ourselves not as service providers but as long-term partners. Our success is measured exclusively by the outcomes we deliver for our clients — nothing else.</p>
+      <p data-lang="gr">Δεν βλέπουμε τον εαυτό μας ως παρόχους υπηρεσιών αλλά ως μακροπρόθεσμους συνεργάτες. Η επιτυχία μας μετριέται αποκλειστικά από τα αποτελέσματα που προσφέρουμε στους πελάτες μας.</p>
+    </div>
+  </div>
+</section>
+
+<!-- MILESTONES -->
+<section class="section section-black">
+  <div class="section-label reveal">
+    <span data-li="en">Our History</span>
+    <span data-li="gr">Η Ιστορία μας</span>
+  </div>
+  <h2 class="section-title on-black reveal reveal-d1" data-lang="en">37 years of<br><em>disciplined activity.</em></h2>
+  <h2 class="section-title on-black reveal reveal-d1" data-lang="gr">37 χρόνια<br><em>πειθαρχημένης δραστηριότητας.</em></h2>
+
+  <div class="timeline">
+    <div class="tl-item reveal">
+      <div class="tl-year">1987</div>
+      <div class="tl-content">
+        <h3 data-lang="en">Foundation in Athens</h3>
+        <h3 data-lang="gr">Ίδρυση στην Αθήνα</h3>
+        <p data-lang="en">NIGREDIA is established as a real estate acquisition and advisory firm serving high-net-worth private clients in the Greek market. First offices opened in central Athens.</p>
+        <p data-lang="gr">Η NIGREDIA ιδρύεται ως εταιρεία απόκτησης ακινήτων και συμβουλευτικής για υψηλά εισοδηματικά ιδιωτικά πρόσωπα στην ελληνική αγορά. Τα πρώτα γραφεία ανοίγουν στο κέντρο της Αθήνας.</p>
+      </div>
+    </div>
+    <div class="tl-item reveal">
+      <div class="tl-year">2001</div>
+      <div class="tl-content">
+        <h3 data-lang="en">Expansion into Development</h3>
+        <h3 data-lang="gr">Επέκταση στην Ανάπτυξη</h3>
+        <p data-lang="en">The firm begins direct development mandates, managing the full lifecycle from land acquisition through construction oversight to asset sale, across residential and commercial typologies.</p>
+        <p data-lang="gr">Η εταιρεία ξεκινά άμεσες εντολές ανάπτυξης, διαχειριζόμενη τον πλήρη κύκλο ζωής από την απόκτηση γης έως την κατασκευή και την πώληση περιουσιακών στοιχείων.</p>
+      </div>
+    </div>
+    <div class="tl-item reveal">
+      <div class="tl-year">2010</div>
+      <div class="tl-content">
+        <h3 data-lang="en">Hospitality & Tourism Portfolio</h3>
+        <h3 data-lang="gr">Χαρτοφυλάκιο Φιλοξενίας</h3>
+        <p data-lang="en">Recognising the transformative potential of Greek tourism, NIGREDIA builds a hospitality-focused investment portfolio, establishing early positions in Athens and the Greek islands.</p>
+        <p data-lang="gr">Αναγνωρίζοντας τις δυνατότητες του ελληνικού τουρισμού, η NIGREDIA δημιουργεί χαρτοφυλάκιο επενδύσεων φιλοξενίας στην Αθήνα και τα ελληνικά νησιά.</p>
+      </div>
+    </div>
+    <div class="tl-item reveal">
+      <div class="tl-year">2018</div>
+      <div class="tl-content">
+        <h3 data-lang="en">International Presence</h3>
+        <h3 data-lang="gr">Διεθνής Παρουσία</h3>
+        <p data-lang="en">Offices established in London and Geneva to serve an expanded international client base. NIGREDIA's mandate broadens to include cross-border structuring and European market advisory.</p>
+        <p data-lang="gr">Ανοίγουν γραφεία στο Λονδίνο και τη Γενεύη για να εξυπηρετήσουν διεθνή πελατεία. Η εντολή της NIGREDIA διευρύνεται για να συμπεριλάβει διασυνοριακή δόμηση και συμβουλευτική ευρωπαϊκής αγοράς.</p>
+      </div>
+    </div>
+    <div class="tl-item reveal">
+      <div class="tl-year">2023</div>
+      <div class="tl-content">
+        <h3 data-lang="en">Montreal Office & North American Expansion</h3>
+        <h3 data-lang="gr">Γραφείο στο Μόντρεαλ</h3>
+        <p data-lang="en">Opening of the Montreal office extends NIGREDIA's reach into the Canadian and North American markets, serving the Greek diaspora and international investors seeking Mediterranean real estate exposure.</p>
+        <p data-lang="gr">Το άνοιγμα του γραφείου στο Μόντρεαλ επεκτείνει την παρουσία της NIGREDIA στις καναδικές και βορειοαμερικανικές αγορές, εξυπηρετώντας την ελληνική διασπορά και διεθνείς επενδυτές.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="section section-cream">
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(0,0,0,.08);">
+    <div style="padding:3.5rem 2.5rem;background:var(--cream);" class="reveal">
+      <div style="font-family:var(--serif);font-weight:300;font-size:3.5rem;line-height:1;margin-bottom:.6rem;">37+</div>
+      <div style="font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--mid);" data-lang="en">Years Active</div>
+      <div style="font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--mid);" data-lang="gr">Χρόνια Δραστηριότητας</div>
+    </div>
+    <div style="padding:3.5rem 2.5rem;background:var(--cream);" class="reveal reveal-d1">
+      <div style="font-family:var(--serif);font-weight:300;font-size:3.5rem;line-height:1;margin-bottom:.6rem;">47</div>
+      <div style="font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--mid);" data-lang="en">Projects Completed</div>
+      <div style="font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--mid);" data-lang="gr">Ολοκληρωμένα Έργα</div>
+    </div>
+    <div style="padding:3.5rem 2.5rem;background:var(--cream);" class="reveal reveal-d2">
+      <div style="font-family:var(--serif);font-weight:300;font-size:3.5rem;line-height:1;margin-bottom:.6rem;">4</div>
+      <div style="font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--mid);" data-lang="en">Countries</div>
+      <div style="font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--mid);" data-lang="gr">Χώρες</div>
+    </div>
+    <div style="padding:3.5rem 2.5rem;background:var(--cream);" class="reveal reveal-d3">
+      <div style="font-family:var(--serif);font-weight:300;font-size:3.5rem;line-height:1;margin-bottom:.6rem;">16</div>
+      <div style="font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--mid);" data-lang="en">Active Developments</div>
+      <div style="font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--mid);" data-lang="gr">Ενεργά Έργα</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-logo-wrap">
+      <img src="images/logo.png" alt="NIGREDIA"/>
+      <p class="footer-tagline" data-lang="en">Investment &amp; Real Estate Advisory</p>
+      <p class="footer-tagline" data-lang="gr">Επενδύσεις &amp; Συμβουλευτική Ακινήτων</p>
+      <p style="font-size:.68rem;color:rgba(245,241,232,.3);line-height:1.8;margin-top:.8rem;">Agias Varvaras 45<br>Dafni 17235<br>Greece</p>
+      <p style="font-size:.68rem;color:rgba(245,241,232,.3);margin-top:.4rem;">info@nigredia.com</p>
+    </div>
+    <div class="footer-col">
+      <h4 data-lang="en">Navigation</h4><h4 data-lang="gr">Πλοήγηση</h4>
+      <a href="index.html"><span data-li="en">Home</span><span data-li="gr">Αρχική</span></a>
+      <a href="about.html"><span data-li="en">About</span><span data-li="gr">Σχετικά</span></a>
+      <a href="projects.html"><span data-li="en">Projects</span><span data-li="gr">Έργα</span></a>
+      <a href="investments.html"><span data-li="en">Investments</span><span data-li="gr">Επενδύσεις</span></a>
+      <a href="advisory.html"><span data-li="en">Advisory</span><span data-li="gr">Συμβουλευτική</span></a>
+      <a href="contact.html"><span data-li="en">Contact</span><span data-li="gr">Επικοινωνία</span></a>
+    </div>
+    <div class="footer-col">
+      <h4 data-lang="en">Services</h4><h4 data-lang="gr">Υπηρεσίες</h4>
+      <a href="advisory.html"><span data-li="en">Acquisition Advisory</span><span data-li="gr">Συμβουλευτική Απόκτησης</span></a>
+      <a href="advisory.html"><span data-li="en">Portfolio Strategy</span><span data-li="gr">Στρατηγική Χαρτοφυλακίου</span></a>
+      <a href="advisory.html"><span data-li="en">Development Management</span><span data-li="gr">Διαχείριση Ανάπτυξης</span></a>
+      <a href="advisory.html"><span data-li="en">Golden Visa</span><span data-li="gr">Golden Visa</span></a>
+    </div>
+    <div class="footer-col">
+      <h4 data-lang="en">Presence</h4><h4 data-lang="gr">Παρουσία</h4>
+      <p>Athens<br>London<br>Geneva<br>Montreal</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2024 NIGREDIA. <span data-li="en">All rights reserved.</span><span data-li="gr">Με επιφύλαξη παντός δικαιώματος.</span></p>
+    <p class="footer-copy">info@nigredia.com</p>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
